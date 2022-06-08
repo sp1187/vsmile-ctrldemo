@@ -1,0 +1,8 @@
+Debug/
+Device.env
+Makefile
+Resource.asm
+Resource.h
+Resource.inc
+*.bdy
+*.lik

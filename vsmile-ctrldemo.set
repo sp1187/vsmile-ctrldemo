@@ -1,0 +1,68 @@
+[General]
+Version=1.0
+Config=0
+ReleaseIntermediate=.\Release
+ReleaseOutput=.\Release
+DebudIntermediate=.\Debug
+DebugOutput=.\Debug
+EnableFunctionView=0
+DownloadPrompt=0
+DiffDownload=0
+CHECK_DOWNLOAD_VERIFY=0
+BodyName=SPG200CartG
+
+[SetLink]
+ExeFile=0
+Output=vsmile-ctrldemo.TSK
+INTVEC=1
+STARTUP=1
+ALIGNRES=1
+ALIGNNUM=40
+FillUnusedNum=0
+INITTABLE=1
+NONPAGE0=0
+EnableCheckSPIMechanism=0
+
+[LIBRARY]
+Count=1
+LIB0=CMacro1016.lib
+
+[SYMBOL]
+Count=0
+
+[Option]
+CC_LOC=$(APPDIR)\toolchain\gcc
+CC_FLAG_D=-S -gstabs -Wall
+CC_FLAG_R=-S -O1 -Wall
+AS_LOC=$(APPDIR)\toolchain\xasm16
+AS_FLAG_D=-t5 -d -sr
+AS_FLAG_R=-t5 -sr
+LD_LOC=$(APPDIR)\toolchain\xlink16
+LD_FLAG_D= -blank 0x00
+LD_FLAG_R= -blank 0x00
+DebugOpt=0
+ReleaseOpt=1
+IsGenMakefile=1
+IsGenAryfile=1
+IsGenRes=1
+IsInitGlobal=1
+IsGenList=0
+CurIsa=ISA11
+IsWall=0
+POINTER=0
+
+[AdvancedHard]
+nStackSize=2047
+
+[Beforebuild]
+Description=
+Count=0
+
+[Beforelink]
+Description=
+Count=0
+
+[Afterbuild]
+Description=
+Count=0
+

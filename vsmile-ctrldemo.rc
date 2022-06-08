@@ -1,0 +1,12 @@
+# Begin Project
+# Begin SubItem "vsmile-ctrldemo  Resources"
+# Begin Source File
+SOURCE=font.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_FONT_BIN
+EXPORT=3
+SPECIFICFLAG=0
+# End Source File
+# End SubItem
+# End Project
