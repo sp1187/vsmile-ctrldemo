@@ -58,6 +58,9 @@ void print_dec(int y, int x, unsigned int value)
 		digits[len++] = value % 10;
 	} while(value /= 10);
 
+	for (i = 4; i >= len; i--) {
+		tilemap[64*y + x + i] = ' ';
+	}
 	for (i = len - 1, j = 0; i >= 0; i--, j++) {
 		tilemap[64*y + x + i] = hextable[digits[j]];
 	}
