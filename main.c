@@ -49,21 +49,33 @@ static int tilemap[2048];
 
 #define make_color(r, g, b) ((r << 10) | (g << 5) | (b << 0))
 
+void print_dec(int y, int x, unsigned int value)
+{
+	int digits[5];
+	int i, j, len = 0;
+
+	do {
+		digits[len++] = value % 10;
+	} while(value /= 10);
+
+	for (i = len - 1, j = 0; i >= 0; i--, j++) {
+		tilemap[64*y + x + i] = hextable[digits[j]];
+	}
+}
+
 void print_hex(int y, int x, int value)
 {
 	int i;
-	for(i = 3; i >= 0; i--){
+	for(i = 3; i >= 0; i--, value >>= 4){
 		tilemap[64*y + x + i] = hextable[value & 0x0f];
-		value = value >> 4;
 	}
 }
 
 void print_hex2(int y, int x, int value)
 {
 	int i;
-	for(i = 1; i >= 0; i--){
+	for(i = 1; i >= 0; i--, value >>= 4){
 		tilemap[64*y + x + i] = hextable[value & 0x0f];
-		value = value >> 4;
 	}
 }
 
@@ -148,7 +160,7 @@ int main()
 	*SYSTEM_CTRL = 0;
 	*WATCHDOG_CLEAR = 0x55aa;
 
-    // Configure PPU
+	// Configure PPU
 	*PPU_BG1_SCROLL_X = 0;
 	*PPU_BG1_SCROLL_Y = 0;
 	*PPU_BG1_ATTR = 0;
@@ -196,22 +208,22 @@ int main()
 		print_hex2(4, 6, buttons_val);
 		print_hex2(4, 10, joyx_val);
 		print_hex2(4, 14, joyy_val);
-		print_string(4, 18, "#idle:");
-		print_hex(4, 25, idle_counter);
+		print_string(4, 19, "#idle:");
+		print_dec(4, 26, idle_counter);
 
 		print_string(7, 2, "IRQ3");
 		print_string(7, 8, "#rx:");
-		print_hex(7, 13, irq3_rx_count);
+		print_dec(7, 13, irq3_rx_count);
 		print_string(7, 19, "#tx:");
-		print_hex(7, 24, irq3_tx_count);
+		print_dec(7, 24, irq3_tx_count);
 		print_string(8, 8, "last rx:");
 		print_hex2(8, 17, last_rx);
 
 		print_string(11, 2, "IRQ5");
 		print_string(11, 8, "#0:");
-		print_hex(11, 13, irq5_lo_count);
+		print_dec(11, 13, irq5_lo_count);
 		print_string(11, 19, "#1:");
-		print_hex(11, 24, irq5_hi_count);
+		print_dec(11, 24, irq5_hi_count);
 	}
 
 	return 0;
